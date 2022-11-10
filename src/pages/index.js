@@ -1,20 +1,14 @@
 import React from "react";
 import config from "../components/config.json";
 import styled from "styled-components";
-import { CSSReset } from "../components/CSSReset";
-import Menu from "../components/Menu/Menu";
+import Menu from "../components/Menu";
 import { StyledTimeline } from "../components/Timeline";
 
 function HomePage() {
-  const estilosDaHomePage = {
-    // backgroundColor: "red"
-  };
 
   const [valorDoFiltro, setValorDoFiltro] = React.useState("");
-
   return (
     <>
-      <CSSReset />
       <div
         style={{
           display: "flex",
@@ -23,9 +17,14 @@ function HomePage() {
           // backgroundColor: "red",
         }}
       >
-        <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro}/>
+        <Menu
+          valorDoFiltro={valorDoFiltro}
+          setValorDoFiltro={setValorDoFiltro}
+        />
         <Header />
-        <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>Conteúdo</Timeline>
+        <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
+          Conteúdo
+        </Timeline>
       </div>
     </>
   );
@@ -42,6 +41,8 @@ export default HomePage;
 // }
 
 const StyledHeader = styled.div`
+
+  background-color : ${({ theme }) => theme.backgroundLevel1};
   img {
     width: 80px;
     height: 80px;
@@ -54,19 +55,16 @@ const StyledHeader = styled.div`
     padding: 16px 32px;
     gap: 16px;
   }
-  .banner img {
-    max-width: cover;
-    width: 100%;
-    height: 230px;
-    border-radius: 0;
-  }
+`;
+const StyledBanner = styled.div`
+  background-color: blue;
+  background-image: url(${config.bg});
+  height: 230px;
 `;
 function Header() {
   return (
     <StyledHeader>
-      <div className="banner">
-        <img src="matrix.jpg" />
-      </div>
+      <StyledBanner />
       <section className="user-info">
         <img src={`https://github.com/${config.github}.png`} />
         <div>
@@ -78,7 +76,7 @@ function Header() {
   );
 }
 
-function Timeline({searchValue, ...propriedades}) {
+function Timeline({ searchValue, ...propriedades }) {
   // console.log("Dentro do componente", propriedades.playlists);
   const playlistNames = Object.keys(propriedades.playlists);
   // Statement
