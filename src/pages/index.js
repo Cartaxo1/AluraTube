@@ -58,7 +58,7 @@ const StyledHeader = styled.div`
 `;
 const StyledBanner = styled.div`
   background-image: url(${config.bg});
-  width: 100;
+  background-size: cover;
   height: 30vh;
 `;
 function Header() {
