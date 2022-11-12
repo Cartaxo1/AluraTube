@@ -57,9 +57,9 @@ const StyledHeader = styled.div`
   }
 `;
 const StyledBanner = styled.div`
-  background-color: blue;
   background-image: url(${config.bg});
-  height: 230px;
+  width: 100;
+  height: 30vh;
 `;
 function Header() {
   return (

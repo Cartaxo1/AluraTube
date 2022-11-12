@@ -22,7 +22,7 @@ export const StyledTimeline = styled.div`
     width: 100%;
     padding: 0;
     overflow: hidden;
-    padding: 16px;
+    padding-block: 16px;
     div {
       width: calc(100vw - 16px * 4);
       display: grid;
@@ -42,5 +42,24 @@ export const StyledTimeline = styled.div`
         }
       }
     }
+  }
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #b3b2b3 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #b3b2b3;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
   }
 `;
