@@ -3,10 +3,25 @@ import config from "../components/config.json";
 import styled from "styled-components";
 import Menu from "../components/Menu";
 import { StyledTimeline } from "../components/Timeline";
+import { videoService } from "../components/services/videoServices";
 
 function HomePage() {
-
+  const service = videoService();
   const [valorDoFiltro, setValorDoFiltro] = React.useState("");
+  const [playlists, setPlaylists] = React.useState({});
+
+  React.useEffect(() => {
+    service.getAllVideos().then((dados) => {
+      console.log(dados.data);
+      const novasPLaylists = { ...playlists };
+      dados.data.forEach((video) => {
+        if (!novasPLaylists[video.playlist]) novasPLaylists[video.playlist] = [];
+        novasPLaylists[video.playlist].push(video);
+      });
+      setPlaylists(novasPLaylists);
+    });
+  }, []);
+
   return (
     <>
       <div
@@ -41,8 +56,7 @@ export default HomePage;
 // }
 
 const StyledHeader = styled.div`
-
-  background-color : ${({ theme }) => theme.backgroundLevel1};
+  background-color: ${({ theme }) => theme.backgroundLevel1};
   img {
     width: 80px;
     height: 80px;
